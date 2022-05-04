@@ -3,7 +3,7 @@
   height: clamp(400px, 60vh, 550px);
   background: #fff;
   position: fixed;
-  z-index: 99999;
+  z-index:9999;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
@@ -70,7 +70,7 @@
 .hoverDetails{
     background: rgba(0, 0, 0, 0.659);
     position: absolute;
-    right: -180%;
+    right: -80px;
     top: 80%;
     border-radius: 5px;
     padding: 8px 18px;
@@ -78,6 +78,7 @@
     color: white;
     transform: translateY(-50%);
     display: none;
+    border: 1px solid #ffffff17;
 }
 .imageContainer:hover .hoverDetails{
     display: block;

@@ -1,0 +1,8 @@
+.logo{
+    position: absolute;
+    right: 50px;
+    z-index: 999999;
+    top: 30px;
+    border-bottom: 1px solid #fff;
+    cursor: pointer;
+}
