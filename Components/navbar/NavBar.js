@@ -12,14 +12,21 @@ import HomeImg from "../../public/images/navImages/Home.png";
 import ProjectsImg from "../../public/images/navImages/Projects.png";
 import CodeImg from "../../public/images/navImages/code.png";
 import ContactImg from "../../public/images/navImages/contact.png";
+import postImage from "../../public/images/navImages/postImage.png";
+import dashBoard from "../../public/images/navImages/dashBoard.png";
+
 import Link from "next/link";
 
-const NavBar = () => {
+const NavBar = ({ owner }) => {
   return (
-    <div className={navBar}>
+    
+      <div className={navBar}>
       <div className={topShape}></div>
       <div className={bottomShape}></div>
-      <Link passHref href={"/"}>
+      {
+        !owner ?
+        <>
+        <Link passHref href={"/"}>
         <div className={imageContainer}>
           <div className={hoverDetails}>Home</div>
           <div className={imageWraper}>
@@ -51,7 +58,37 @@ const NavBar = () => {
           </div>
         </div>
       </Link>
+      </>
+      :
+      <>
+      <Link passHref href={"/"}>
+        <div className={imageContainer}>
+          <div className={hoverDetails}>Home</div>
+          <div className={imageWraper}>
+            <Image layout="fill" objectFit="cover" src={HomeImg} alt="" />
+          </div>
+        </div>
+      </Link>
+       <Link passHref href={"/owner/is/manshad"}>
+        <div className={imageContainer}>
+          <div className={hoverDetails}>post</div>
+          <div className={imageWraper}>
+            <Image layout="fill" objectFit="cover" src={postImage} alt="" />
+          </div>
+        </div>
+      </Link>
+      <Link passHref href={"/owner/dashboard/"}>
+        <div className={imageContainer}>
+          <div className={hoverDetails}>Dashboard</div>
+          <div className={imageWraper}>
+            <Image layout="fill" objectFit="cover" src={dashBoard} alt="" />
+          </div>
+        </div>
+      </Link>
+      </>
+      }
     </div>
+  
   );
 };
 

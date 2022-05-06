@@ -1,0 +1,6 @@
+.postPage{
+    width: 100vw;
+    height: 100vh;
+    padding: 50px 100px;
+    background: linear-gradient(180deg, #000744 0%, #030725 100%);
+}

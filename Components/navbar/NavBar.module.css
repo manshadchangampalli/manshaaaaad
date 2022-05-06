@@ -1,12 +1,13 @@
 .navBar {
   width: 70px;
-  height: clamp(400px, 60vh, 550px);
+  height: clamp(auto, 60vh, 550px);
   background: #fff;
   position: fixed;
   z-index:9999;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
+  grid-gap: 20px;
   border-radius: 0 30px 30px 0;
   display: grid;
   padding: 30px 10px;
