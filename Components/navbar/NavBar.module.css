@@ -18,7 +18,7 @@
   height: 40px;
   background: rgb(255, 255, 255);
   position: fixed;
-  top: -40px;
+  top: -39px;
   left: 0;
 }
 .topShape::before {
@@ -33,7 +33,7 @@
 }
 .bottomShape {
   width: 30px;
-  height: 40px;
+  height: 41px;
   background: rgb(255, 255, 255);
   position: fixed;
   bottom: -40px;
