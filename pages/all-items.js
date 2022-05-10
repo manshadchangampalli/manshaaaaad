@@ -10,11 +10,13 @@ import {
   inputBox,
   itemsContainer,
 } from "../styles/AllItems.module.css";
+import Logo from '../Components/logo/Logo'
 
 const AllItems = () => {
   const data = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
   return (
     <div className={allItems}>
+      <Logo/>
       <NavBar />
       <div className={inputBox}>
         <input type="search" />

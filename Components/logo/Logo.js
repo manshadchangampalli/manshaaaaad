@@ -4,7 +4,7 @@ import { logo } from "./Logo.module.css";
 
 const Logo = () => {
   return (
-    <Link href={"/owner/is/manshad"} passHref>
+    <Link href={"/owner/login"} passHref>
       <p className={logo}>
         <svg
           width="100"
