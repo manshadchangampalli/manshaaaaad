@@ -71,11 +71,12 @@
 .hoverDetails{
     background: rgba(0, 0, 0, 0.659);
     position: absolute;
-    right: -80px;
+    left: 100%;
     top: 80%;
     border-radius: 5px;
     padding: 8px 18px;
     font-size: 15px;
+    z-index: 999;
     color: white;
     transform: translateY(-50%);
     display: none;

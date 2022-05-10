@@ -14,6 +14,7 @@ import CodeImg from "../../public/images/navImages/code.png";
 import ContactImg from "../../public/images/navImages/contact.png";
 import postImage from "../../public/images/navImages/postImage.png";
 import dashBoard from "../../public/images/navImages/dashBoard.png";
+import projectAdd from "../../public/images/navImages/projectsAdd.png";
 
 import Link from "next/link";
 
@@ -66,6 +67,14 @@ const NavBar = ({ owner }) => {
           <div className={hoverDetails}>Home</div>
           <div className={imageWraper}>
             <Image layout="fill" objectFit="cover" src={HomeImg} alt="" />
+          </div>
+        </div>
+      </Link>
+      <Link passHref href={"/owner/addprojects/"}>
+        <div className={imageContainer}>
+          <div className={hoverDetails}>add Project</div>
+          <div className={imageWraper}>
+            <Image layout="fill" objectFit="cover" src={projectAdd} alt="" />
           </div>
         </div>
       </Link>
