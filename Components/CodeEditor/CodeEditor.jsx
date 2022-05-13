@@ -14,12 +14,11 @@ import {
     runButton,
 } from "../../styles/CodeEditor.module.css";
 
-const CodeEditor = ({ owner ,submitButtonClicked}) => {
+const CodeEditor = ({srcDoc,setSrcDoc, owner ,submitButtonClicked}) => {
     const [selected, setSelected] = useState(1);
     const [html, setHtml] = useState("");
     const [css, setCss] = useState("");
     const [js, setJs] = useState("");
-    const [srcDoc, setSrcDoc] = useState("");
 
     useEffect(() => {
         setSrcDoc(
