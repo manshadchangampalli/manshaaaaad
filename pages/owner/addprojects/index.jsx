@@ -11,11 +11,18 @@ import { ref, getDownloadURL, uploadBytesResumable, deleteObject } from "firebas
 const AddProjects = () => {
   const [imgUrl, setImgUrl] = useState('/');
   const [loading, setLoading] = useState('no Image');
+  const [loadingBtn, setLoadingBtn] = useState('Add Project');
   const [img,setImg] = useState('')
+
+  const description = useRef()
+  const title = useRef()
+  const imageLink = useRef()
+
   const imageUploaded = (e) => {
+    const name = `${e.target.files[0].name}${new Date()}`
+    setImg(name)
     setLoading('loading...')
-    setImg(e.target.files[0])
-    const storageRef = ref(storage, `files/${e.target.files[0].name}`);
+    const storageRef = ref(storage, `files/${name}`);
     const uploadTask = uploadBytesResumable(storageRef, e.target.files[0]);
     uploadTask.on("state_changed",
       (snapshot) => {
@@ -32,8 +39,9 @@ const AddProjects = () => {
       }
     );
   }
+  console.log(img);
   const deleteImageFormFirebase = () => {
-    const desertRef = ref(storage, `files/${img.name}`);
+    const desertRef = ref(storage, `files/${img}`);
     deleteObject(desertRef).then(() => {
       setImgUrl('')
       setLoading('no Image')
@@ -41,8 +49,40 @@ const AddProjects = () => {
       alert("error")
     });
   }
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setLoadingBtn("Adding...")
+    const data = {
+      title:title.current.value,
+      link:imageLink.current.value,
+      image:imgUrl,
+      description:description.current.value
+    }
 
+    if(title.current.value === '' || imageLink.current.value === '' || description.current.value === '' || imgUrl === '/'){
+      setLoadingBtn("Some data are missing...")
+      setTimeout(()=>{
+        setLoadingBtn("Add Project")
+      },5000)
+      return
+    }
+    fetch(`http://localhost:3001/api/projects`,{
+      method:"POST",
+      headers: {
+        'Content-Type': 'application/json'
+        },
+      body : JSON.stringify(data)
+    }).then(res=>{
+      setLoadingBtn("Added")
+      console.log("responseres\n",res);
+      
+    }).catch(error=>{
+      console.log("error\n"+ error);
+      setLoadingBtn("Not Added")
+    })
+    setTimeout(()=>{
+      setLoadingBtn("Add Project")
+    },5000)
   }
   return (
     <div className={style.addProject}>
@@ -73,12 +113,12 @@ const AddProjects = () => {
             </div>
           </div>
           <div className={style.linkAndNameContainer}>
-            <input placeholder='name' type="text" />
-            <input placeholder='link' type="text" />
+            <input ref={title} placeholder='name' type="text" />
+            <input ref={imageLink} placeholder='link' type="text" />
           </div>
-          <textarea placeholder='description' className={style.description} name="" id="" cols="30" rows="10"></textarea>
+          <textarea ref={description} placeholder='description' className={style.description} name="" id="" cols="30" rows="10"></textarea>
         </div>
-        <button>Add Project</button>
+        <button onClick={handleSubmit}>{loadingBtn}</button>
       </div>
     </div>
   )

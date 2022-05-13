@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../Components/logo/Logo";
 import NavBar from "../Components/navbar/NavBar";
 import styles from "../styles/Projects.module.css";
@@ -7,12 +7,30 @@ import Image from "next/image";
 import Img1 from "../public/images/img1.png";
 import Img2 from "../public/images/img2.png";
 
-const Projects = () => {
-  const [translate, setTranslate] = useState(0);
+
+export const getStaticProps = async() => {
+  // fetch(`http://localhost:3001/api/projects`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       retu
+  //     });
+
+
+  const response = await fetch(`http://localhost:3001/api/projects`)
+  const data = await response.json()
+
+  return{
+    props:{
+      projectData:data
+    }
+  }
+}
+
+const Projects = ({projectData}) => {
   // how many projects
-  const elements = 3;
+  const [translate, setTranslate] = useState(0);
   // how long we can translate
-  const last = (elements - 1) * -400;
+  const last = (projectData.length - 1) * -400;
   // the starting always zero
   const first = 0;
   // the next button clicked
@@ -27,6 +45,7 @@ const Projects = () => {
       setTranslate(translate + 400);
     }
   };
+
 
   return (
     <div className={styles.projectsPage}>
@@ -48,15 +67,12 @@ const Projects = () => {
             style={{ transform: `translateY(${translate}px)` }}
             className={styles.allProjects}
           >
-            <div className={styles.imageWraper}>
-              <Image layout="fill" src={Img1} alt="" objectFit="cover" />
-            </div>
-            <div className={styles.imageWraper}>
-              <Image layout="fill" src={Img2} alt="" objectFit="cover" />
-            </div>
-            <div className={styles.imageWraper}>
-              <Image layout="fill" src={Img1} alt="" objectFit="cover" />
-            </div>
+            {projectData.length>0 &&
+            projectData.map((data,i) => (
+              <div key={i} className={styles.imageWraper}>
+                <Image layout="fill" src={data.image ? data.image : "/"} alt=""  objectFit="cover" />
+              </div>
+            ))}
           </div>
         </div>
       </div>

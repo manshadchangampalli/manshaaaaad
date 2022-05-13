@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React from 'react'
 import style from './login.module.css'
@@ -6,6 +7,7 @@ const Login = () => {
     const router = useRouter()
     return (
         <div className={style.loginPage}>
+            <Image alt='bg' layout='fill' src={"/images/code bg/bg.webp"}/>
             <div className={style.loginBox}>
                 <div className={style.loginHead}>
                     <div className={style.loginText}>
