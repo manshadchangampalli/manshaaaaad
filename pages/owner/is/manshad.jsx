@@ -26,7 +26,7 @@ const Manshad = () => {
     }
     if ((code.html === "" && code.css === "" && code.js === "") || projName === "") {
       if (projName === "") {
-        setCheckName("*The name is missing")
+        setCheckName("*The Project name is missing")
       }
       return
     }
@@ -62,14 +62,21 @@ const Manshad = () => {
             width:100vw;
             color:red;
           }
+          img{
+            width:200px;
+            height:auto;
+          }
         </style>
       <body>
-        <h1> there is no code </h1>
+        <img src="https://i.pinimg.com/originals/48/fb/90/48fb90bcf2a1f779ee66deee8a12c898.png"/>
+        <h1>oops !!</h1>
+        <h2> there is no code </h2>
         <p>(html, css and js are empty)</p>
       </body>
     </html>`)
     return
     }
+    setSrcDoc("")
     setCode({
       html: html,
       css: css,
