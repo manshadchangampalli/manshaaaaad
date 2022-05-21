@@ -9,14 +9,7 @@ import Img2 from "../public/images/img2.png";
 
 
 export const getStaticProps = async() => {
-  // fetch(`http://localhost:3001/api/projects`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       retu
-  //     });
-
-
-  const response = await fetch(`http://localhost:3001/api/projects`)
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}projects`)
   const data = await response.json()
 
   return{

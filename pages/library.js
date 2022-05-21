@@ -14,8 +14,20 @@ import { useEffect, useState } from "react";
 import LibraryItem from "../Components/libraryitem/LibraryItem";
 import Link from "next/link";
 
-const Library = () => {
-  const data = [1, 1, 1, 1];
+export const getStaticProps = async() => {
+  const Response =await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}library/getrecentlyaddedlibraryName`)
+  const data = await Response.json()
+
+  return {
+    props:{
+      data:data
+    }
+  }
+
+}
+
+
+const Library = ({data}) => {
   const [pointTop, setPointTop] = useState(500);
   const [pointLeft, setPointLeft] = useState(500);
   useEffect(() => {
@@ -29,7 +41,7 @@ const Library = () => {
       <Logo />
       <NavBar />;
       <div className={inputBox}>
-        <input type="search" />
+        <input type="text" />
         <div className={searchIcon}>
           <Image width={20} height={20} alt="" src={SearchIcon} />
         </div>
@@ -37,9 +49,9 @@ const Library = () => {
       <div className={latestItem}>
         {data.map((data, i) => {
           return (
-            <Link key={i} href={"/library/id"} passHref>
+            <Link key={i} href={`/library/${data._id}`} passHref>
               <p>
-                <LibraryItem />
+                <LibraryItem name={data.name} />
               </p>
             </Link>
           );

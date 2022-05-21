@@ -1,10 +1,10 @@
 import React from "react";
 import {itemBox} from './LibraryItem.module.css'
 
-const LibraryItem = () => {
+const LibraryItem = ({name}) => {
   return (
     <div className={itemBox}>
-      <h1>Toggle Icon</h1>
+      <h1>{name}</h1>
     </div>
   );
 };

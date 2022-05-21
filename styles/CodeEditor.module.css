@@ -66,7 +66,7 @@
 .outputHeader {
   width: 100%;
   height: 100%;
-  border-bottom: 1px solid #ffffff50;
+  /* border-bottom: 1px solid #ffffff50; */
   display: flex;
   align-items: center;
   justify-content: space-between;

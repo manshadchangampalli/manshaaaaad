@@ -14,12 +14,9 @@ import {
     runButton,
 } from "../../styles/CodeEditor.module.css";
 
-const CodeEditor = ({srcDoc,setSrcDoc, owner ,submitButtonClicked}) => {
+const CodeEditor = ({ srcDoc, setSrcDoc, owner, submitButtonClicked, data , html, setHtml, css, setCss, js, setJs }) => {
 
     const [selected, setSelected] = useState(1);
-    const [html, setHtml] = useState("");
-    const [css, setCss] = useState("");
-    const [js, setJs] = useState("");
 
     useEffect(() => {
         setSrcDoc(
@@ -55,7 +52,6 @@ const CodeEditor = ({srcDoc,setSrcDoc, owner ,submitButtonClicked}) => {
         setHtml("")
         setCss("")
         setJs("")
-
         runButtonClicked()
     }
     return (
@@ -110,7 +106,7 @@ const CodeEditor = ({srcDoc,setSrcDoc, owner ,submitButtonClicked}) => {
                         </p>
                         {
                             owner &&
-                            <p onClick={()=>submitButtonClicked(html,css,js)} className={runButton}>
+                            <p onClick={() => submitButtonClicked(html, css, js)} className={runButton}>
                                 submit
                             </p>
                         }

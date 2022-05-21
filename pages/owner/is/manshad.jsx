@@ -4,9 +4,14 @@ import NavBar from '../../../Components/navbar/NavBar'
 import CodeEditor from '../../../Components/CodeEditor/CodeEditor'
 import style from './manshad.module.css'
 import { useState } from 'react'
+import Library from '../../library'
 
 const Manshad = () => {
   const [checkName, setCheckName] = useState("")
+  const [html, setHtml] = useState("")
+  const [css, setCss] = useState("");
+  const [js, setJs] = useState("");
+  const [libraryAddedStatus, setLibraryAddedStatus] = useState("")
   const [popup, setPopup] = useState(false)
   const [projName, setProjName] = useState("")
   const [srcDoc, setSrcDoc] = useState("");
@@ -16,6 +21,16 @@ const Manshad = () => {
     js: ""
   })
   const router = useRouter();
+
+  const resetCodeAndName = () => {
+    setCode({
+      html: "",
+      css: "",
+      js: ""
+    })
+    setProjName("")
+  }
+
   const handleData = () => {
     setCheckName("")
     const data = {
@@ -31,23 +46,34 @@ const Manshad = () => {
       return
     }
 
-    fetch("http://localhost:3001/api/library", {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}library/addlibrary`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
     })
-      .then((res) => console.log(res))
+      .then((res) => {
+        if (res.status === 200) {
+          setLibraryAddedStatus("Code added to the Library")
+          setTimeout(() => {
+            setPopup(false)
+            setLibraryAddedStatus("")
+            resetCodeAndName()
+          }, 3000)
+        }
+      })
       .catch(err => {
         console.log(error);
+        setLibraryAddedStatus("code not added!!")
       })
   }
+
   const submitButtonClicked = (html, css, js) => {
     setCheckName("")
     if (html === "" && css === "" && js === "") {
       setSrcDoc(
-    `<html>
+        `<html>
         <style>
         *{
           margin:0;
@@ -74,7 +100,7 @@ const Manshad = () => {
         <p>(html, css and js are empty)</p>
       </body>
     </html>`)
-    return
+      return
     }
     setSrcDoc("")
     setCode({
@@ -96,6 +122,12 @@ const Manshad = () => {
             </svg>
             <form >
               <p style={{ color: "red" }}>{checkName}</p>
+              {
+                libraryAddedStatus !== "" && <p
+                  style={{ color: libraryAddedStatus === "code not added!!" ? "red" : "green" }}>
+                  {libraryAddedStatus}
+                </p>
+              }
               <input value={projName} type="text" onChange={(e) => {
                 setProjName(e.target.value)
               }} />
@@ -105,7 +137,7 @@ const Manshad = () => {
         </div>
       }
       <NavBar owner />
-      <CodeEditor setSrcDoc={setSrcDoc} srcDoc={srcDoc} owner submitButtonClicked={submitButtonClicked} />
+      <CodeEditor html={html} setHtml={setHtml} setCss={setCss} css={css} js={js} setJs={setJs} setSrcDoc={setSrcDoc} srcDoc={srcDoc} owner submitButtonClicked={submitButtonClicked} />
     </div>
   )
 }

@@ -51,8 +51,9 @@
 }
 .imageWraper {
   position: relative;
+  padding: 2px;
   width: 30px;
-  height: 30px;
+  height: 31px;
 }
 .imageContainer {
   width: 45px;

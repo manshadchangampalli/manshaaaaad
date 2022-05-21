@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { mousePointer,pointerContainer } from "./MousePointer.module.css";
+import { mousePointer, pointerContainer } from "./MousePointer.module.css";
 
 const MousePointer = () => {
   const [pointTop, setPointTop] = useState(500);

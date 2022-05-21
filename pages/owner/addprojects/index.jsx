@@ -66,7 +66,7 @@ const AddProjects = () => {
       },5000)
       return
     }
-    fetch(`http://localhost:3001/api/projects`,{
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}projects`,{
       method:"POST",
       headers: {
         'Content-Type': 'application/json'
