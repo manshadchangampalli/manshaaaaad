@@ -14,6 +14,7 @@ import {
 } from "../styles/AllItems.module.css";
 import Logo from "../Components/logo/Logo";
 import { useState, useEffect, useRef } from "react";
+import ResponsiveNav from "../Components/navbar/ResponsiveNav";
 
 export const getStaticProps = async () => {
   const response = await fetch(
@@ -61,6 +62,7 @@ const AllItems = ({ data }) => {
   return (
     <div ref={allItemsRef} className={allItems}>
       <Logo />
+      <ResponsiveNav/>
       <NavBar />
       <div className={searchBoxContainer}>
         <div className={inputBox}>

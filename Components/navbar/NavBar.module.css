@@ -13,7 +13,7 @@
   padding: 30px 10px;
   place-items: center;
 }
-.topShape {
+/* .topShape {
   width: 30px;
   height: 40px;
   background: rgb(255, 255, 255);
@@ -48,7 +48,7 @@
   left: 0;
   border-radius: 30px 0 0 0;
   position: absolute;
-}
+} */
 .imageWraper {
   position: relative;
   padding: 2px;
@@ -85,4 +85,25 @@
 }
 .imageContainer:hover .hoverDetails{
     display: block;
+}
+
+.topShape{
+  top: 0;
+  position: absolute;
+  transform: translateY(-32px);
+  left: 0;
+
+}
+.bottomShape{
+  bottom: 0;
+  position: absolute;
+  transform: translateY(34px);
+  left: 0;
+
+}
+
+@media only screen and (max-width:768px){
+  .navBar{
+    display: none;
+  }
 }

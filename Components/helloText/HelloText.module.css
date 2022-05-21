@@ -22,3 +22,13 @@
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none;
 }
+
+
+@media only screen and (max-width:768px){
+  .textContainer{
+    grid-gap: 20px;
+  }
+  .textContainer h1{
+    font-size: 50px;
+  }
+}

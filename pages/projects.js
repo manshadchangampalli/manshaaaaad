@@ -6,6 +6,7 @@ import arrowImg from "../public/images/navImages/Arrow.png";
 import Image from "next/image";
 import Img1 from "../public/images/img1.png";
 import Img2 from "../public/images/img2.png";
+import ResponsiveNav from "../Components/navbar/ResponsiveNav";
 
 
 export const getStaticProps = async() => {
@@ -43,6 +44,7 @@ const Projects = ({projectData}) => {
   return (
     <div className={styles.projectsPage}>
       <NavBar />
+      <ResponsiveNav/>
       <Logo />
       <div className={styles.projectswraper}>
         {translate !== first && (
@@ -64,6 +66,11 @@ const Projects = ({projectData}) => {
             projectData.map((data,i) => (
               <div key={i} className={styles.imageWraper}>
                 <Image layout="fill" src={data.image ? data.image : "/"} alt=""  objectFit="cover" />
+                <div className={styles.imagedetails}>
+                  <h1>{data.title}</h1>
+                  <p>{data.description}</p>
+                  <a href={data.link}>show</a>
+                </div>
               </div>
             ))}
           </div>

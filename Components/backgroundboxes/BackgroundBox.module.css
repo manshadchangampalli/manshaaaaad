@@ -30,3 +30,17 @@
     left: 100px;
     top: 8%;
 }
+
+@media only screen and (max-width:768px){
+    .boxOne,.boxThree,.boxTwo{
+        width: 70%;
+    }
+    .boxThree{
+        display: none;
+    }
+    .boxTwo{
+        left: 0;
+        right: inherit;
+    }
+    
+  }

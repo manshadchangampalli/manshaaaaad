@@ -13,6 +13,7 @@ import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import LibraryItem from "../Components/libraryitem/LibraryItem";
 import Link from "next/link";
+import ResponsiveNav from "../Components/navbar/ResponsiveNav";
 
 export const getStaticProps = async () => {
   const Response = await fetch(
@@ -63,7 +64,8 @@ const Library = ({ data }) => {
   return (
     <div ref={allItemsRef} className={libraryPage}>
       <Logo />
-      <NavBar />;
+      <ResponsiveNav/>
+      <NavBar />
       <div className={inputBox}>
         <input ref={serachBoxRef} onChange={handleOnChange} type="text" />
         <div className={searchIcon}>

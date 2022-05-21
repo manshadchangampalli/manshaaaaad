@@ -50,3 +50,38 @@
     height: 400px;
     overflow: hidden;
 }
+.imagedetails{
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  transition: all .5s ease;
+  height: auto;
+  padding: 30px 20px;
+  display: grid;
+  grid-gap: 15px;
+  color: white;
+  width: 100%;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.412);
+  backdrop-filter: blur(4px);
+}
+.imagedetails a{
+  width: 100px;
+  padding: 9px;
+  border-radius: 10px ;
+  font-weight: 600;
+  display: grid;
+  place-items: center;
+  color: rgb(255, 255, 255);
+  background: rgba(0, 0, 0, 0.301);
+}
+.imageWraper:hover .imagedetails{
+  bottom: 0;
+}
+.imagedetails h1{
+  font-size: 20px;
+}
+.imagedetails p{
+  font-size: 16px;
+  opacity: .8;
+}
