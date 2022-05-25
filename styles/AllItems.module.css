@@ -68,3 +68,17 @@
 .resultBox li:nth-last-child(1){
   border-bottom: none;
 }
+
+@media  only screen and ( max-width:768px) {
+  .inputBox{
+    width: 80%;
+    place-self: center;
+  }
+  .itemsContainer{
+    grid-template-columns: repeat(2,1fr);
+    width: 90vw;
+  }
+  .allItems{
+    padding-bottom: 70px;
+  }
+}

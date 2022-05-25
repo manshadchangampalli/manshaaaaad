@@ -26,10 +26,8 @@
   border-radius: 10px;
   grid-template-rows: 60px 1fr;
 }
-.inputBoxs .editor{
+ .editor{
   width: 100%;
-  /* overflow: auto; */
-  height: 100%;
   background: #000;
   caret-color: white;
   color: white;
@@ -101,3 +99,15 @@
   border-radius: 10px;
   background: white;
 } 
+
+@media only screen and (max-width:768px) {
+  .codeEditor{
+    display: none;
+  }
+  .codeEditorContainer{
+    padding: 0;
+  }
+  .editor{
+    height: calc(100vh - 110px);
+  }
+}

@@ -15,7 +15,7 @@ import LibraryItem from "../Components/libraryitem/LibraryItem";
 import Link from "next/link";
 import ResponsiveNav from "../Components/navbar/ResponsiveNav";
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const Response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}library/getrecentlyaddedlibraryName`
   );
@@ -54,17 +54,25 @@ const Library = ({ data }) => {
     setWindowOnClick(true);
     setSearchInput(e.target.value);
     fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}library/search?name=${e.target.value}`
+      `${process.env.NEXT_PUBLIC_BASE_URL}library/search?name=${e.target.value}`,
+      {
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "User-Agent": "*",
+        },
+      }
     )
       .then((res) => res.json())
       .then((data) => {
         setSearchData(data);
-      });
+      }).catch((err)=>{
+        console.log(err);
+      })
   };
   return (
     <div ref={allItemsRef} className={libraryPage}>
       <Logo />
-      <ResponsiveNav/>
+      <ResponsiveNav />
       <NavBar />
       <div className={inputBox}>
         <input ref={serachBoxRef} onChange={handleOnChange} type="text" />

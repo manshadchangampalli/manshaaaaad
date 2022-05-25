@@ -79,3 +79,15 @@
 .resultBox li:nth-last-child(1){
   border-bottom: none;
 }
+
+@media only screen and (max-width:768px) {
+  .libraryPage{
+    grid-gap: 25px;
+  }
+  .inputBox{
+    width: 80%;
+  }
+  .latestItem{
+    width: 90%;
+  }
+}

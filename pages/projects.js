@@ -9,13 +9,21 @@ import Img2 from "../public/images/img2.png";
 import ResponsiveNav from "../Components/navbar/ResponsiveNav";
 
 
-export const getStaticProps = async() => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}projects`)
-  const data = await response.json()
-
-  return{
-    props:{
-      projectData:data
+export const getServerSideProps = async() => {
+  try{
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}projects`)
+    const data = await response.json()
+    return{
+      props:{
+        projectData:data
+      }
+    }
+  }catch(err){
+    console.log(err);
+    return{
+      props:{
+        projectData:[]
+      }
     }
   }
 }
@@ -23,20 +31,36 @@ export const getStaticProps = async() => {
 const Projects = ({projectData}) => {
   // how many projects
   const [translate, setTranslate] = useState(0);
+  const [innerWidth, setInnerWidth] = useState(0);
+  const [translateAmount, setTranslateAmount] = useState(400);
+  const [last,setLast] = useState(0)
   // how long we can translate
-  const last = (projectData.length - 1) * -400;
   // the starting always zero
+  console.log("last"+ last);
+  console.log("amount"+translateAmount);
   const first = 0;
   // the next button clicked
+  useEffect(()=>{
+    console.log("useEffect");
+      setInnerWidth(window.innerWidth)
+      console.log(window.innerWidth,"innerwidht");
+    if(window.innerWidth < 768){
+      setTranslateAmount((((window.innerWidth/100)*96 ) / 6) * 4)
+    }
+    setLast((projectData.length -1) *-translateAmount)
+  },[translate,innerWidth])
+  console.log(innerWidth,translateAmount);
+  
   const nextButtonClicked = () => {
     if (translate !== last) {
-      setTranslate(translate - 400);
+    console.log("project data",translateAmount);
+      setTranslate(translate - translateAmount);
     }
   };
   // the prev button clicked
   const prevButtonClicked = () => {
     if (translate !== first) {
-      setTranslate(translate + 400);
+      setTranslate(translate + translateAmount);
     }
   };
 

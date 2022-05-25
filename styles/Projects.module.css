@@ -41,7 +41,7 @@
     cursor: pointer;
     position: absolute;
     bottom: -70px;
-    left: 300px;
+    left: 50%;
     transform: rotate(-270deg) translateX(-50%);
 }
 .imageWraper{
@@ -84,4 +84,20 @@
 .imagedetails p{
   font-size: 16px;
   opacity: .8;
+}
+
+@media only screen and (max-width:768px) {
+  .projectsPage{
+    padding-bottom: 50px;
+    min-height: 100vh;
+    height: auto;
+  }
+  .projectswraper{
+    width: 96%;
+    height: calc((96vw / 6) * 4);
+  }
+  .imageWraper{
+    width: 100%;
+    height: calc((96vw / 6) * 4);
+  }
 }
