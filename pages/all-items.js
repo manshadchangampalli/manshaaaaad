@@ -16,7 +16,7 @@ import Logo from "../Components/logo/Logo";
 import { useState, useEffect, useRef } from "react";
 import ResponsiveNav from "../Components/navbar/ResponsiveNav";
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}library/getalllibrariesname`
   );
